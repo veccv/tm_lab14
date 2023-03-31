@@ -27,7 +27,7 @@ $session = $_SESSION['loggedin'];
 	<div id='myHeader'> </div>	
 	<main> 
 		<section class="sekcja1">	
-			<div class="container-fluid">
+			<div class="container-fluid p-4">
                 <?php
                 if ($session) {
                     echo "Witaj na stronie głównej " . $_SESSION['email'] . '<br><br><br>' ;
@@ -49,6 +49,5 @@ $session = $_SESSION['loggedin'];
 			</div>	
 		</section>
 	</main>	
-	<?php require_once 'footer.php'; ?>	
 </body>
 </html>

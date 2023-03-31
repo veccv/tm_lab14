@@ -10,28 +10,6 @@ $session = $_SESSION['loggedin'];
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="main_nav">
 			<ul class="navbar-nav">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Polecenia 1.x</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="polecenie1_1.php"> <img src="media/menu_icons/info.svg" height="18"> Polecenie 1.1 </a></li>
-						<li><a class="dropdown-item" href="polecenie1_2.php"> <img src="media/menu_icons/help.svg" height="18"> Polecenie 1.2 </a></li>
-					</ul>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Polecenia 2.x</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="polecenie2_1.php"> Polecenie 2.1 </a></li>
-						<li><a class="dropdown-item" href="polecenie2_2.php"> Polecenie 2.2 </a></li>
-					</ul>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Polecenia 3.x</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="polecenie3_1.php"> Polecenie 3.1 </a></li>
-						<li><a class="dropdown-item" href="polecenie3_2.php"> Polecenie 3.2 </a></li>
-						<li><a class="dropdown-item" href="polecenie3_3.php"> Polecenie 3.3 </a></li>
-					</ul>
-				</li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Konto</a>
                     <ul class="dropdown-menu">
