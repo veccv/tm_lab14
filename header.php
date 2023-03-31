@@ -23,6 +23,17 @@ $session = $_SESSION['loggedin'];
                         ?>
                     </ul>
                 </li>
+                <?php
+                if ($session) {
+                    echo '<li class="nav-item dropdown">';
+                    echo '<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Zarządzanie</a>';
+                    echo '<ul class="dropdown-menu">';
+                    echo '<li><a class="dropdown-item" href="podklady.php"> Podkłady budowlane </a></li>';
+                    echo '<li><a class="dropdown-item" href=""> Wyposażenie </a></li>';
+                    echo '</ul>';
+                    echo '</li>';
+                }
+                ?>
 			</ul> 
 		</div> 
 		
