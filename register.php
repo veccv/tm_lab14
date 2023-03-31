@@ -71,8 +71,8 @@
                             <label for="username" class="form-label">Login</label>
                             <div class="input-group has-validation">
                                 <span class="input-group-text">@</span>
-                                <input type="text" class="form-control" name="username" id="username"
-                                       placeholder="Username"
+                                <input type="text" class="form-control" name="login" id="login"
+                                       placeholder="login"
                                        required>
                             </div>
                         </div>
@@ -99,11 +99,11 @@
                         <h4 class="mb-3">Współrzędne wyświetlania zdjęcia</h4>
                         <img src="images/logo_firmy.png"/>
                         <div class="col-6">
-                            <input type="text" class="form-control" name="x" id="x" placeholder="Pozycja X" value=""
+                            <input type="number" class="form-control" max="800" name="x" id="x" placeholder="Pozycja X" value=""
                                    required>
                         </div>
                         <div class="col-6">
-                            <input type="text" class="form-control" name="y" id="y" placeholder="Pozycja Y" value=""
+                            <input type="number" class="form-control" max="300" name="y" id="y" placeholder="Pozycja Y" value=""
                                    required>
                         </div>
 
