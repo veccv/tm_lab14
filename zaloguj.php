@@ -7,7 +7,7 @@ $pass = htmlentities($_POST['password'], ENT_QUOTES, "UTF-8");
 session_start();
 
 Database::getConnection()->query("SET NAMES 'utf8'");
-$rekord = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM users WHERE email='$email'"));
+$rekord = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE email='$email'"));
 
 if (!$rekord)
 {
@@ -15,7 +15,7 @@ if (!$rekord)
     header('Location: login.php');
 
 } else {
-    if ($rekord['password'] == $pass)
+    if ($rekord['haslo'] == $pass)
     {
         echo "Logowanie Ok. User: {$rekord['username']}. Hasło: {$rekord['password']}";
         session_start();

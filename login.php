@@ -44,7 +44,6 @@
     <link href="signin.css" rel="stylesheet">
 </head>
 <body class="text-center">
-
 <main class="form-signin">
     <form method="POST" action="zaloguj.php">
         <h1 class="h3 mb-3 fw-normal">Logowanie</h1>
@@ -56,17 +55,8 @@
             <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Hasło</label>
         </div>
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Zapamiętaj mnie
-            </label>
-        </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Zaloguj się</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2023</p>
     </form>
 </main>
-
-
 </body>
 </html>
