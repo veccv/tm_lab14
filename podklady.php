@@ -58,7 +58,11 @@ $session = $_SESSION['loggedin'];
                     foreach ($rekord as $podklad) {
                         echo '<tr>';
                         echo '<td>' . $podklad[1] . '</td>';
-                        echo '<td>' . '<a href="new_podklad.php" class="btn btn-primary w-20">Edytuj</a>' . '</td>';
+                        $link = "remove_podklad.php?id=" . $podklad[0];
+
+                        echo '<td class="px-10 d-flex gap-2">' . '<a href="new_podklad.php" class="btn btn-primary w-20">Edytuj</a>'
+                            . '<a href="' . $link . '" class="btn btn-danger w-20">Usuń</a>'
+                            . '</td>';
                         echo '</tr>';
                     }
                     ?>
