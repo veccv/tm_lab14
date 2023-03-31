@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 session_start();
 $session = $_SESSION['loggedin'];
+$podkladId = $_GET['id'];
 
 ?>
 <!DOCTYPE html>
@@ -25,52 +26,42 @@ $session = $_SESSION['loggedin'];
 
     <style>
         body {
-            background-color: ghostwhite !important;
+            background-color: ghostwhite;
         }
     </style>
 </head>
 
-<body onload="myLoadHeader()" style="background-color: rgba(138,142,160,0.32);">
+<body onload="myLoadHeader()">
 <div id='myHeader'></div>
 <main>
     <section class="sekcja1">
-        <div class="container-fluid p-4 d-flex">
+        <div class="container-fluid p-4 text-center">
             <?php
             if ($session) {
                 include 'Database.php';
                 $email = $_SESSION['email'];
-                $rekord = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM podklad"));
+                $rekord = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE email='$email'"));
                 ?>
-                <div class="pe-5 align-self-start">
-                    <p>Lista dostępnych podkładów budowlanych firmy:</p>
-                    <a href="new_podklad.php" class="btn btn-success" style="width: 100%">Dodaj podkład budowlany</a>
+                <div style="background-color: white">
+                    <form method="POST" class="needs-validation" novalidate action="add_pomieszczenie.php"
+                          enctype="multipart/form-data">
+                        <h2>Nowe pomieszczenie</h2>
+                        <div style="padding: 20px 200px">
+                            <label for="lastName" class="form-label">Nazwa pomieszczenia</label>
+                            <input type="text" class="form-control" name="nazwaPomieszczenia" id="nazwaPomieszczenia"
+                                   placeholder="Nazwa pomieszczenia"
+                                   value=""
+                                   required>
+                        </div>
+                        <?php
+                        echo '<input type="hidden" name="id" id="id" value="' . $podkladId . '">';
+                        ?>
+
+
+                        <button class="w-40 btn btn-success btn-lg p-12" type="submit">Stwórz nowe pomieszczenie
+                        </button>
+                    </form>
                 </div>
-
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Nazwa podkładu</th>
-                        <th scope="col">Opcje</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    foreach ($rekord as $podklad) {
-                        echo '<tr>';
-                        echo '<td>' . $podklad[1] . '</td>';
-                        $link = "remove_podklad.php?id=" . $podklad[0];
-                        $edit_link = "podklad.php?id=" . $podklad[0];
-
-                        echo '<td class="px-10 d-flex gap-2">' . '<a href="' . $edit_link . '" class="btn btn-primary w-20">Edytuj</a>'
-                            . '<a href="' . $link . '" class="btn btn-danger w-20">Usuń</a>'
-                            . '</td>';
-                        echo '</tr>';
-                    }
-                    ?>
-                    </tbody>
-                </table>
-
-
                 <?php
             }
             if (!$session) {

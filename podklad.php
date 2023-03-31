@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 session_start();
 $session = $_SESSION['loggedin'];
+$podkladId = $_GET['id'];
 
 ?>
 <!DOCTYPE html>
@@ -34,41 +35,33 @@ $session = $_SESSION['loggedin'];
 <div id='myHeader'></div>
 <main>
     <section class="sekcja1">
+        <div>
+            <a href="podklady.php" class="btn btn-primary my-2 mx-3">Powrót do podkładów</a>
+        </div>
         <div class="container-fluid p-4 d-flex">
             <?php
             if ($session) {
                 include 'Database.php';
-                $email = $_SESSION['email'];
-                $rekord = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM podklad"));
+                $rekord = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM podklad WHERE idpod=$podkladId"));
+                echo '<img src="images/' . $rekord['nazwa_pliku'] . '"/>';
                 ?>
-                <div class="pe-5 align-self-start">
-                    <p>Lista dostępnych podkładów budowlanych firmy:</p>
-                    <a href="new_podklad.php" class="btn btn-success" style="width: 100%">Dodaj podkład budowlany</a>
+                <div class="m-4 w-100">
+                    <h4>Lista pomieszczeń:</h4>
+                    <ul class="list-group">
+                        <?php
+                        $pomieszczenia = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM pomieszczenie WHERE idpod=$podkladId"));
+                        foreach ($pomieszczenia as $pomieszczenie) {
+                            echo '<li class="list-group-item">' . $pomieszczenie[1] . '</li>';
+                        }
+                        ?>
+
+                        <li class="list-group-item">
+                            <?php
+                            echo '<a href="new_pomieszczenie.php?id=' . $podkladId . '" class="btn btn-success w-100">Dodaj nowe pomieszczenie</a>'
+                            ?>
+                        </li>
+                    </ul>
                 </div>
-
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Nazwa podkładu</th>
-                        <th scope="col">Opcje</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    foreach ($rekord as $podklad) {
-                        echo '<tr>';
-                        echo '<td>' . $podklad[1] . '</td>';
-                        $link = "remove_podklad.php?id=" . $podklad[0];
-                        $edit_link = "podklad.php?id=" . $podklad[0];
-
-                        echo '<td class="px-10 d-flex gap-2">' . '<a href="' . $edit_link . '" class="btn btn-primary w-20">Edytuj</a>'
-                            . '<a href="' . $link . '" class="btn btn-danger w-20">Usuń</a>'
-                            . '</td>';
-                        echo '</tr>';
-                    }
-                    ?>
-                    </tbody>
-                </table>
 
 
                 <?php
