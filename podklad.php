@@ -29,6 +29,20 @@ $podkladId = $_GET['id'];
             background-color: ghostwhite !important;
         }
     </style>
+
+    <style>
+        .podklad {
+            display: flex;
+            position: relative;
+            width: 600px;
+            height: 600px;
+        }
+
+        #item {
+            position: absolute;
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body onload="myLoadHeader()" style="background-color: rgba(138,142,160,0.32);">
@@ -44,7 +58,17 @@ $podkladId = $_GET['id'];
                 if ($session) {
                     include 'Database.php';
                     $rekord = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM podklad WHERE idpod=$podkladId"));
+
+                    echo '<div class="podklad">';
                     echo '<img src="images/' . $rekord['nazwa_pliku'] . '"/>';
+                    $srodki = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM srodek WHERE idpod=$podkladId"));
+                    foreach ($srodki as $srodek) {
+                        $zdjecieSrodka = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM nazwa_srodka WHERE idnazwa=$srodek[5]"))[2];
+
+
+                        echo '<img id="item" src="images/' . $zdjecieSrodka . '" height="80" width="80" style="left: ' . $srodek[10] . 'px; top: ' . $srodek[11] . 'px" />';
+                    }
+                    echo '</div>';
                     ?>
                     <div class="m-4 d-flex flex-column flex-fill">
                         <div class="">
