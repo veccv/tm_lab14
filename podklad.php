@@ -38,29 +38,48 @@ $podkladId = $_GET['id'];
         <div>
             <a href="podklady.php" class="btn btn-primary my-2 mx-3">Powrót do podkładów</a>
         </div>
-        <div class="container-fluid p-4 d-flex">
+        <div class="container-fluid p-4 d-flex flex-wrap flex-row w-100">
             <?php
             if ($session) {
                 include 'Database.php';
                 $rekord = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM podklad WHERE idpod=$podkladId"));
                 echo '<img src="images/' . $rekord['nazwa_pliku'] . '"/>';
                 ?>
-                <div class="m-4 w-100">
-                    <h4>Lista pomieszczeń:</h4>
-                    <ul class="list-group">
-                        <?php
-                        $pomieszczenia = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM pomieszczenie WHERE idpod=$podkladId"));
-                        foreach ($pomieszczenia as $pomieszczenie) {
-                            echo '<li class="list-group-item">' . $pomieszczenie[1] . '</li>';
-                        }
-                        ?>
-
-                        <li class="list-group-item">
+                <div class="m-4 d-flex flex-column flex-fill">
+                    <div class="">
+                        <h4>Lista pomieszczeń:</h4>
+                        <ul class="list-group">
                             <?php
-                            echo '<a href="new_pomieszczenie.php?id=' . $podkladId . '" class="btn btn-success w-100">Dodaj nowe pomieszczenie</a>'
+                            $pomieszczenia = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM pomieszczenie WHERE idpod=$podkladId"));
+                            foreach ($pomieszczenia as $pomieszczenie) {
+                                echo '<li class="list-group-item">' . $pomieszczenie[1] . '</li>';
+                            }
                             ?>
-                        </li>
-                    </ul>
+
+                            <li class="list-group-item">
+                                <?php
+                                echo '<a href="new_pomieszczenie.php?id=' . $podkladId . '" class="btn btn-success w-100">Dodaj nowe pomieszczenie</a>'
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="padding-top: 5%">
+                        <h4>Lista wyposażenia:</h4>
+                        <ul class="list-group">
+                            <?php
+                            $srodki = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM srodek WHERE idpod=$podkladId"));
+                            foreach ($srodki as $srodek) {
+                                echo '<li class="list-group-item">' . $srodek[6] . '</li>';
+                            }
+                            ?>
+
+                            <li class="list-group-item">
+                                <?php
+                                echo '<a href="new_item.php?id=' . $podkladId . '" class="btn btn-success w-100" style="background-color: midnightblue">Dodaj nowy przedmiot</a>'
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
 
