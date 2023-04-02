@@ -61,7 +61,7 @@ $session = $_SESSION['loggedin'];
                         $link = "remove_podklad.php?id=" . $podklad[0];
                         $edit_link = "podklad.php?id=" . $podklad[0];
 
-                        echo '<td class="px-10 d-flex gap-2">' . '<a href="' . $edit_link . '" class="btn btn-primary w-20">Edytuj</a>'
+                        echo '<td class="px-10 d-flex gap-2">' . '<a href="' . $edit_link . '" class="btn btn-primary w-20">Podgląd</a>'
                             . '<a href="' . $link . '" class="btn btn-danger w-20">Usuń</a>'
                             . '</td>';
                         echo '</tr>';

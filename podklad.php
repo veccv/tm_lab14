@@ -96,7 +96,7 @@ $podkladId = $_GET['id'];
                                 foreach ($srodki as $srodek) {
                                     echo '<li class="list-group-item d-flex justify-content-between align-items-center">'
                                         . $srodek[6]
-                                        . '<a href="change.php?idp='.$podkladId.'&ids='.$srodek[0].'" class="btn btn-info">Zmień położenie</a>'
+                                        . '<a href="change.php?idp=' . $podkladId . '&ids=' . $srodek[0] . '" class="btn btn-info">Zmień położenie</a>'
                                         . '</li>';
                                 }
                                 ?>
