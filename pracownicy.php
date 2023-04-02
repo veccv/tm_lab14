@@ -68,29 +68,38 @@ $session = $_SESSION['loggedin'];
                     foreach ($pracownicy as $pracownik) {
                         echo '<tr>';
                         echo '<td><div class="container">';
-                        echo '<img src="images/' . $pracownik[9] . '" style="height: 100px; width: 100px;">';
                         switch ($pracownik[6]) {
+                            case "1": {
+                                echo '<img src="images/' . $pracownik[9] . '" style="height: 100px; width: 100px; border: 5px solid green">';
+                                break;
+                            }
                             case "2": {
+                                echo '<img src="images/' . $pracownik[9] . '" style="height: 100px; width: 100px; border: 5px solid green">';
                                 echo '<img id="dd" src="images/rj45.png" style="height: 40px; width: 40px">';
                                 break;
                             }
                             case "3": {
+                                echo '<img src="images/' . $pracownik[9] . '" style="height: 100px; width: 100px; border: 5px solid green">';
                                 echo '<img id="dd" src="images/phone.png" style="height: 40px; width: 40px">';
                                 break;
                             }
                             case "4": {
+                                echo '<img src="images/' . $pracownik[9] . '" style="height: 100px; width: 100px; border: 5px solid green">';
                                 echo '<img id="dd" src="images/shovel.png" style="height: 40px; width: 40px">';
                                 break;
                             }
                             case "5": {
+                                echo '<img src="images/' . $pracownik[9] . '" style="height: 100px; width: 100px; border: 5px solid gray">';
                                 echo '<img id="dd" src="images/moon.png" style="height: 40px; width: 40px">';
                                 break;
                             }
                             case "6": {
+                                echo '<img src="images/' . $pracownik[9] . '" style="height: 100px; width: 100px; border: 5px solid yellow">';
                                 echo '<img id="dd" src="images/sun.jpg" style="height: 40px; width: 40px">';
                                 break;
                             }
                             case "7": {
+                                echo '<img src="images/' . $pracownik[9] . '" style="height: 100px; width: 100px; border: 5px solid red">';
                                 echo '<img id="dd" src="images/bed.png" style="height: 40px; width: 40px">';
                                 break;
                             }
