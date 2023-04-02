@@ -69,7 +69,9 @@ $podkladId = $_GET['id'];
                 $pracownicy = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM podklady_pracownika WHERE idpod=$podkladId"));
                 foreach ($pracownicy as $pracownik) {
                     $zdjeciePracownika = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE idp=$pracownik[0]"))[9];
-                    echo '<img id="item" src="images/' . $zdjeciePracownika . '" height="80" width="80" style="left: ' . $pracownik[2] . 'px; top: ' . $pracownik[3] . 'px" />';
+                    if (mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE idp=$pracownik[0]"))[6] != "0") {
+                        echo '<img id="item" src="images/' . $zdjeciePracownika . '" height="80" width="80" style="left: ' . $pracownik[2] . 'px; top: ' . $pracownik[3] . 'px" />';
+                    }
                 }
                 echo '</div>';
                 ?>
@@ -117,7 +119,7 @@ $podkladId = $_GET['id'];
                                 echo '<li class="list-group-item">';
                                 echo '<a href="new_item.php?id=' . $podkladId . '" class="btn btn-success w-100" style="background-color: midnightblue">Dodaj nowy przedmiot</a>';
                                 echo '</li>';
-                                }
+                            }
 
                             ?>
                         </ul>
