@@ -53,16 +53,6 @@ $session = $_SESSION['loggedin'];
                 $email = $_SESSION['email'];
                 $rekord = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE email='$email'"));
 
-                echo '<div class="company-logo">';
-                echo '<img src="images/logo_firmy.png" height="300" width="600" />';
-
-                $employeePhoto = $rekord['nazwa_pliku_fotki_pracownika'];
-                $employeePhotoX = $rekord['X_pracownika'];
-                $employeePhotoY = $rekord['Y_pracownika'];
-
-                echo '<img id="employee-photo" src="images/' . $employeePhoto . '" height="80" width="80" style="left: ' . $employeePhotoX . 'px; top: ' . $employeePhotoY . 'px" />';
-                echo '</div>';
-
                 echo "Witaj na stronie głównej " . $email . '<br><br><br>';
 
 
