@@ -69,9 +69,7 @@ $podkladId = $_GET['id'];
                 $pracownicy = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM podklady_pracownika WHERE idpod=$podkladId"));
                 foreach ($pracownicy as $pracownik) {
                     $zdjeciePracownika = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE idp=$pracownik[0]"))[9];
-                    $y = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE idp=$pracownik[0]"))[8];
-                    $x = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE idp=$pracownik[0]"))[7];
-                    echo '<img id="item" src="images/' . $zdjeciePracownika . '" height="80" width="80" style="left: ' . $x . 'px; top: ' . $y . 'px" />';
+                    echo '<img id="item" src="images/' . $zdjeciePracownika . '" height="80" width="80" style="left: ' . $pracownik[2] . 'px; top: ' . $pracownik[3] . 'px" />';
                 }
                 echo '</div>';
                 ?>
@@ -133,7 +131,7 @@ $podkladId = $_GET['id'];
                                 if ($session) {
                                     echo '<li class="list-group-item d-flex justify-content-between align-items-center">'
                                         . mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE idp=$srodek[0]"))[4]
-                                        . '<a href="change.php?idpod=' . $podkladId . '&idp=' . $srodek[0] . '" class="btn btn-info">Zmień położenie</a>'
+                                        . '<a href="change_employeePosition.php?idpod=' . $podkladId . '&idp=' . $srodek[0] . '" class="btn btn-info">Zmień położenie</a>'
                                         . '</li>';
                                 } else {
                                     echo '<li class="list-group-item d-flex justify-content-between align-items-center">'
