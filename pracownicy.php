@@ -51,36 +51,64 @@ $session = $_SESSION['loggedin'];
             if ($session) {
                 include 'Database.php';
                 $email = $_SESSION['email'];
-                $rekord = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE email='$email'"));
-                ?>
 
+                echo '<a href="change_stan.php" class="btn btn-primary">Zmień stan pracownika</a>';
+                ?>
                 <table class="table">
                     <thead>
                     <tr>
                         <th scope="col">Avatar</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Stan</th>
+                        <th scope="col">Nazwisko</th>
+                        <th scope="col">email</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    <?php
+                    $pracownicy = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM pracownik"));
+                    foreach ($pracownicy as $pracownik) {
+                        echo '<tr>';
+                        echo '<td><img src="images/' . $pracownik[9] . '" style="height: 80px; width: 80px;" /></td>';
+
+                        switch ($pracownik[6]) {
+                            case "0": {
+                                echo '<td>Brak</td>';
+                                break;
+                            }
+                            case "1": {
+                                echo '<td>Praca lokalna</td>';
+                                break;
+                            }
+                            case "2": {
+                                echo '<td>Praca zdalna online</td>';
+                                break;
+                            }
+                            case "3": {
+                                echo '<td>Dyżur pod telefonem</td>';
+                                break;
+                            }
+                            case "4": {
+                                echo '<td>Praca lokalna u klienta</td>';
+                                break;
+                            }
+                            case "5": {
+                                echo '<td>Po pracy</td>';
+                                break;
+                            }
+                            case "6": {
+                                echo '<td>Urlop</td>';
+                                break;
+                            }
+                            case "7": {
+                                echo '<td>L4</td>';
+                                break;
+                            }
+                        }
+                        echo '<td>' . $pracownik[4] . '</td>';
+                        echo '<td>' . $pracownik[3] . '</td>';
+                        echo '</tr>';
+                    }
+                    ?>
                     </tbody>
                 </table>
 
