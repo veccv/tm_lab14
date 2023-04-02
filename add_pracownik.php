@@ -43,7 +43,7 @@ $podkladId = $_GET['id'];
                         <h2>Dodaj pracownika do podkładu</h2>
                         <select name="pracownikId" id="pracownikId" class="form-select">
                             <?php
-                            $srodki = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM pracownik"));
+                            $srodki = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM pracownik WHERE idp NOT IN (SELECT idp FROM podklady_pracownika WHERE idpod=$podkladId)"));
                             foreach ($srodki as $typ) {
                                 echo '<option value="' . $typ[0] . '">' . $typ[4] . '</option>';
                             }
