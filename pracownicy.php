@@ -28,16 +28,15 @@ $session = $_SESSION['loggedin'];
     <script type="text/javascript" src="twoj_js.js"></script>
 
     <style>
-        .company-logo {
-            display: flex;
+        .container {
             position: relative;
-            width: 600px;
-            height: 300px;
         }
 
-        #employee-photo {
+        #dd {
             position: absolute;
-            display: inline-block;
+            bottom: 8px;
+            left: 16px;
+            font-size: 18px;
         }
     </style>
 </head>
@@ -68,7 +67,36 @@ $session = $_SESSION['loggedin'];
                     $pracownicy = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM pracownik"));
                     foreach ($pracownicy as $pracownik) {
                         echo '<tr>';
-                        echo '<td><img src="images/' . $pracownik[9] . '" style="height: 80px; width: 80px;" /></td>';
+                        echo '<td><div class="container">';
+                        echo '<img src="images/' . $pracownik[9] . '" style="height: 100px; width: 100px;">';
+                        switch ($pracownik[6]) {
+                            case "2": {
+                                echo '<img id="dd" src="images/rj45.png" style="height: 40px; width: 40px">';
+                                break;
+                            }
+                            case "3": {
+                                echo '<img id="dd" src="images/phone.png" style="height: 40px; width: 40px">';
+                                break;
+                            }
+                            case "4": {
+                                echo '<img id="dd" src="images/shovel.png" style="height: 40px; width: 40px">';
+                                break;
+                            }
+                            case "5": {
+                                echo '<img id="dd" src="images/moon.png" style="height: 40px; width: 40px">';
+                                break;
+                            }
+                            case "6": {
+                                echo '<img id="dd" src="images/sun.jpg" style="height: 40px; width: 40px">';
+                                break;
+                            }
+                            case "7": {
+                                echo '<img id="dd" src="images/bed.png" style="height: 40px; width: 40px">';
+                                break;
+                            }
+                        }
+                        echo '<div></td>';
+
 
                         switch ($pracownik[6]) {
                             case "0": {
