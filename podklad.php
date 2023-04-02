@@ -63,9 +63,15 @@ $podkladId = $_GET['id'];
                 $srodki = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM srodek WHERE idpod=$podkladId"));
                 foreach ($srodki as $srodek) {
                     $zdjecieSrodka = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM nazwa_srodka WHERE idnazwa=$srodek[5]"))[2];
-
-
                     echo '<img id="item" src="images/' . $zdjecieSrodka . '" height="80" width="80" style="left: ' . $srodek[10] . 'px; top: ' . $srodek[11] . 'px" />';
+                }
+
+                $pracownicy = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM podklady_pracownika WHERE idpod=$podkladId"));
+                foreach ($pracownicy as $pracownik) {
+                    $zdjeciePracownika = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE idp=$pracownik[0]"))[9];
+                    $y = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE idp=$pracownik[0]"))[8];
+                    $x = mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE idp=$pracownik[0]"))[7];
+                    echo '<img id="item" src="images/' . $zdjeciePracownika . '" height="80" width="80" style="left: ' . $x . 'px; top: ' . $y . 'px" />';
                 }
                 echo '</div>';
                 ?>
@@ -114,6 +120,36 @@ $podkladId = $_GET['id'];
                                 echo '<a href="new_item.php?id=' . $podkladId . '" class="btn btn-success w-100" style="background-color: midnightblue">Dodaj nowy przedmiot</a>';
                                 echo '</li>';
                                 }
+
+                            ?>
+                        </ul>
+                    </div>
+                    <div style="padding-top: 5%">
+                        <h4>Lista pracowników:</h4>
+                        <ul class="list-group">
+                            <?php
+                            $srodki = mysqli_fetch_all(Database::getConnection()->query("SELECT * FROM podklady_pracownika WHERE idpod=$podkladId"));
+                            foreach ($srodki as $srodek) {
+                                if ($session) {
+                                    echo '<li class="list-group-item d-flex justify-content-between align-items-center">'
+                                        . mysqli_fetch_array(Database::getConnection()->query("SELECT * FROM pracownik WHERE idp=$srodek[0]"))[4]
+                                        . '<a href="change.php?idpod=' . $podkladId . '&idp=' . $srodek[0] . '" class="btn btn-info">Zmień położenie</a>'
+                                        . '</li>';
+                                } else {
+                                    echo '<li class="list-group-item d-flex justify-content-between align-items-center">'
+                                        . $srodek[6]
+                                        . '</li>';
+                                }
+                            }
+                            ?>
+
+
+                            <?php
+                            if ($session) {
+                                echo '<li class="list-group-item">';
+                                echo '<a href="add_pracownik.php?id=' . $podkladId . '" class="btn btn-success w-100" style="background-color: rebeccapurple">Dodaj pracownika</a>';
+                                echo '</li>';
+                            }
 
                             ?>
                         </ul>

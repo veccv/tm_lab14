@@ -29,7 +29,7 @@ $session = $_SESSION['loggedin'];
                             echo '<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Zarządzanie</a>';
                             echo '<ul class="dropdown-menu">';
                             echo '<li><a class="dropdown-item" href="podklady.php"> Podkłady budowlane </a></li>';
-                            echo '<li><a class="dropdown-item" href=""> Wyposażenie </a></li>';
+                            echo '<li><a class="dropdown-item" href="pracownicy.php"> Pracownicy </a></li>';
                             echo '</ul>';
                             echo '</li>';
                         }
